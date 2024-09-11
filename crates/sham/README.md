@@ -16,4 +16,26 @@ undesirable in a test environment, such as sending network requests. In these
 cases, a sham implementation can be used to simulate the real one, without
 actually performing the operation.
 
+The modules provided are:
+
+  - [`reqwest`](#reqwest)
+  - [`std_process`](#std_process)
+
+Note, each module is behind a feature flag, in order to keep the crate size down
+for those who don't need all the functionality.
+
+
+## `reqwest`
+
+The [`reqwest`](https://docs.rs/sham/latest/sham/reqwest/index.html) module
+provides mocks for the [Reqwest](https://docs.rs/reqwest/) crate, which is a
+popular HTTP client for Rust.
+
+
+## `std_process`
+
+The [`std_process`](https://docs.rs/sham/latest/sham/std_process/index.html)
+module provides mocks for the [Rust standard library's process module](https://doc.rust-lang.org/std/process/),
+mainly and most notably [`Command`](https://doc.rust-lang.org/std/process/struct.Command.html).
+
 

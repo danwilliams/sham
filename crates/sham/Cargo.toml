@@ -13,9 +13,23 @@ readme                 = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+#================================[  FEATURES  ]=================================
+
+[features]
+default     = []
+full        = ["reqwest", "std_process"]
+reqwest     = ["dep:bytes", "dep:futures-util", "dep:mockall", "dep:reqwest", "dep:serde", "dep:serde_json"]
+std_process = ["dep:mockall"]
+
 #==============================[  DEPENDENCIES  ]===============================
 
 [dependencies]
+bytes              = { optional = true, version = "1.7.1" }
+futures-util       = { optional = true, version = "0.3.30" }
+mockall            = { optional = true, version = "0.13.0" }
+reqwest            = { optional = true, version = "0.12.7", features = ["json", "stream"] }
+serde              = { optional = true, version = "1.0.210", features = ["derive"] }
+serde_json         = { optional = true, version = "1.0.128", features = ["preserve_order"] }
 
 #=================================[  LINTS  ]===================================
 

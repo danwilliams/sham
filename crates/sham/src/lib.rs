@@ -12,8 +12,9 @@
 #![allow(clippy::multiple_crate_versions, reason = "Cannot resolve all these")]
 #![allow(clippy::items_after_test_module, reason = "Not needed with separated tests")]
 
-//	Lints specifically disabled for unit tests
-#![cfg_attr(test, allow(
+//	Lints specifically disabled for tests, which applies to the whole crate as
+//	it is intended to be used with tests.
+#![allow(
 	non_snake_case,
 	unreachable_pub,
 	clippy::cast_lossless,
@@ -33,7 +34,17 @@
 	clippy::print_stdout,
 	clippy::unwrap_in_result,
 	clippy::unwrap_used,
-	reason = "Not useful in unit tests"
-))]
+	reason = "Not useful in tests"
+)]
+
+
+
+//		Modules
+
+#[cfg(feature = "reqwest")]
+pub mod reqwest;
+
+#[cfg(feature = "std_process")]
+pub mod std_process;
 
 
