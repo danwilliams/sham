@@ -1,0 +1,16 @@
+[package]
+name                   = "sham"
+version                = "0.0.1"
+description            = "Mock implementations for use in testing"
+categories             = ["development-tools::testing"]
+keywords               = ["mock", "mocking", "testing", "development", "tools"]
+edition.workspace      = true
+rust-version.workspace = true
+license.workspace      = true
+authors.workspace      = true
+repository.workspace   = true
+readme                 = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
