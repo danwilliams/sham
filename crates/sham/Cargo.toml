@@ -1,6 +1,6 @@
 [package]
 name                   = "sham"
-version                = "0.0.1"
+version                = "0.1.0"
 description            = "Mock implementations for use in testing"
 categories             = ["development-tools::testing"]
 keywords               = ["mock", "mocking", "testing", "development", "tools"]
