@@ -35,6 +35,7 @@ use bytes::Bytes;
 use core::{
 	error::Error,
 	fmt::{Debug, Display, Formatter, self},
+	hash::BuildHasher,
 	pin::Pin,
 };
 use futures_util::stream::{Stream, self};
@@ -47,11 +48,14 @@ use reqwest::{
 	IntoUrl,
 	StatusCode,
 	Url,
-	header::{HeaderMap, CONTENT_LENGTH, CONTENT_TYPE},
+	header::{HeaderMap, HeaderName, CONTENT_LENGTH, CONTENT_TYPE},
 };
 use serde::{Serialize, de::DeserializeOwned};
 use serde_json::from_slice as from_json_slice;
-use std::sync::Arc;
+use std::{
+	collections::HashMap,
+	sync::Arc,
+};
 
 
 
@@ -684,19 +688,27 @@ pub fn create_mock_client<U: IntoUrl>(responses: Vec<(U, Result<MockResponse, Mo
 /// 
 /// # Parameters
 /// 
-/// * `url`          - The URL of the response.
-/// * `status`       - The status code of the response.
-/// * `content_type` - The content type of the response.
-/// * `content_len`  - The content length of the response.
-/// * `body`         - The body of the response.
+/// * `url`           - The URL of the response.
+/// * `status`        - The status code of the response.
+/// * `content_type`  - The content type of the response.
+/// * `content_len`   - The content length of the response.
+/// * `extra_headers` - Any additional headers to include in the response.
+/// * `body`          - The body of the response.
 /// 
-pub fn create_mock_response<U: IntoUrl, S: Into<String>>(
-	url:          U,
-	status:       StatusCode,
-	content_type: Option<S>,
-	content_len:  Option<usize>,
-	body:         Result<String, MockError>,
-) -> MockResponse {
+pub fn create_mock_response<U, S1, S2, S3, H: BuildHasher>(
+	url:           U,
+	status:        StatusCode,
+	content_type:  Option<S1>,
+	content_len:   Option<usize>,
+	extra_headers: HashMap<S2, S3, H>,
+	body:          Result<String, MockError>,
+) -> MockResponse
+where
+	U:  IntoUrl,
+	S1: Into<String>,
+	S2: Into<String>,
+	S3: Into<String>,
+{
 	MockResponse {
 		url:     url.into_url().unwrap(),
 		status,
@@ -708,6 +720,9 @@ pub fn create_mock_response<U: IntoUrl, S: Into<String>>(
 			if let Some(cl) = content_len {
 				drop(headers.insert(CONTENT_LENGTH, format!("{cl}").parse().unwrap()));
 			}
+			headers.extend(extra_headers.into_iter().map(|(k, v)|
+				(k.into().parse::<HeaderName>().unwrap(), v.into().parse().unwrap())
+			));
 			headers
 		},
 		body:    body.map(|str| Arc::new(Bytes::copy_from_slice(str.as_bytes()))),
