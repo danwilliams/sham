@@ -27,7 +27,6 @@
 
 //		Packages
 
-use core::ops::{Deref, DerefMut};
 use std::{
 	env::args,
 	ffi::OsStr,
@@ -159,23 +158,64 @@ impl FakeCommand {
 			command: mock_command,
 		}
 	}
-}
-
-//󰭅		Deref																	
-impl Deref for FakeCommand {
-	type Target = MockCommand;
 	
-	//		deref																
-	fn deref(&self) -> &Self::Target {
-		&self.command
+	//		args																
+	/// Adds multiple arguments to pass to the program.
+	/// 
+	/// # See also
+	/// 
+	/// * [`std::process::Command::args()`]
+	/// 
+	pub fn args(&mut self, args: Vec<String>) -> &mut Self {
+		self.command.args(args);
+		self
 	}
-}
-
-//󰭅		DerefMut																
-impl DerefMut for FakeCommand {
-	//		deref_mut															
-	fn deref_mut(&mut self) -> &mut Self::Target {
-		&mut self.command
+	
+	//		exec																
+	/// Unix-specific extensions to the [`Command`] builder.
+	/// 
+	/// # See also
+	/// 
+	/// * [`std::os::unix::process::CommandExt::exec()`]
+	/// 
+	pub fn exec(&mut self) -> IoError {
+		self.command.exec()
+	}
+	
+	//		stdin																
+	/// Configuration for the child process's standard input (`stdin`) handle.
+	/// 
+	/// # See also
+	/// 
+	/// * [`std::process::Command::stdin()`]
+	/// 
+	pub fn stdin(&mut self, cfg: MockStdio) -> &mut Self {
+		self.command.stdin(cfg);
+		self
+	}
+	
+	//		stdout																
+	/// Configuration for the child process's standard output (`stdout`) handle.
+	/// 
+	/// # See also
+	/// 
+	/// * [`std::process::Command::stdout()`]
+	/// 
+	pub fn stdout(&mut self, cfg: MockStdio) -> &mut Self {
+		self.command.stdout(cfg);
+		self
+	}
+	
+	//		stderr																
+	/// Configuration for the child process's standard error (`stderr`) handle.
+	/// 
+	/// # See also
+	/// 
+	/// * [`std::process::Command::stderr()`]
+	/// 
+	pub fn stderr(&mut self, cfg: MockStdio) -> &mut Self {
+		self.command.stderr(cfg);
+		self
 	}
 }
 
