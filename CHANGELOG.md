@@ -10,6 +10,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog][], and this project adheres to
 [Semantic Versioning][].
 
+## 0.2.0 (12 November 2024)
+
+### Added
+
+  - Added `headers` parameter to `reqwest::create_mock_response()`
+
+### Changed
+
+  - Changed `reqwest::create_mock_response()` `body` to take a byte slice
+
+
 ## 0.1.1 (12 November 2024)
 
 ### Fixed
