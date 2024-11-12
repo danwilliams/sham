@@ -701,7 +701,7 @@ pub fn create_mock_response<U, S1, S2, S3, H: BuildHasher>(
 	content_type:  Option<S1>,
 	content_len:   Option<usize>,
 	extra_headers: HashMap<S2, S3, H>,
-	body:          Result<String, MockError>,
+	body:          Result<&[u8], MockError>,
 ) -> MockResponse
 where
 	U:  IntoUrl,
@@ -725,7 +725,7 @@ where
 			));
 			headers
 		},
-		body:    body.map(|str| Arc::new(Bytes::copy_from_slice(str.as_bytes()))),
+		body:    body.map(|bytes| Arc::new(Bytes::copy_from_slice(bytes))),
 	}
 }
 
