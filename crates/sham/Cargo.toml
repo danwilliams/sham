@@ -25,12 +25,12 @@ std_process = ["dep:mockall"]
 #==============================[  DEPENDENCIES  ]===============================
 
 [dependencies]
-bytes              = { optional = true, version = "1.7.1" }
-futures-util       = { optional = true, version = "0.3.30" }
+bytes              = { optional = true, version = "1.8.0" }
+futures-util       = { optional = true, version = "0.3.31" }
 mockall            = { optional = true, version = "0.13.0" }
-reqwest            = { optional = true, version = "0.12.7", features = ["json", "stream"] }
-serde              = { optional = true, version = "1.0.210", features = ["derive"] }
-serde_json         = { optional = true, version = "1.0.128", features = ["preserve_order"] }
+reqwest            = { optional = true, version = "0.12.9", features = ["json", "stream"] }
+serde              = { optional = true, version = "1.0.215", features = ["derive"] }
+serde_json         = { optional = true, version = "1.0.132", features = ["preserve_order"] }
 
 #=================================[  LINTS  ]===================================
 
