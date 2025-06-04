@@ -6,7 +6,7 @@
 
 
 
-//		Global configuration
+//		Global configuration																							
 
 //	Customisations of the standard linting configuration
 #![allow(clippy::multiple_crate_versions, reason = "Cannot resolve all these")]
@@ -41,7 +41,7 @@
 
 
 
-//		Modules
+//		Modules																											
 
 #[cfg(feature = "reqwest")]
 pub mod reqwest;

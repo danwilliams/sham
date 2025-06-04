@@ -25,7 +25,7 @@
 
 
 
-//		Packages
+//		Packages																										
 
 use std::{
 	env::args,
@@ -36,7 +36,7 @@ use mockall::{Sequence, automock};
 
 
 
-//		Traits
+//		Traits																											
 
 //§		Command																	
 /// A mockable version of the [`std::process::Command`] trait.
@@ -95,7 +95,7 @@ pub trait Command {
 
 
 
-//		Structs
+//		Structs																											
 
 //		FakeCommand																
 /// A mockable version of the [`std::process::Command`] struct.
@@ -251,7 +251,7 @@ impl MockStdio {
 
 
 
-//		Functions
+//		Functions																										
 
 //		mock_exit																
 /// Mockable version of the [`std::process::exit()`] function.

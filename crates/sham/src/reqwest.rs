@@ -29,7 +29,7 @@
 
 
 
-//		Packages
+//		Packages																										
 
 use bytes::Bytes;
 use core::{
@@ -59,7 +59,7 @@ use std::{
 
 
 
-//		Mocks
+//		Mocks																											
 
 //		Client																	
 mock! {
@@ -246,7 +246,7 @@ impl MockRequestBuilder {
 
 
 
-//		Structs
+//		Structs																											
 
 //		MockError																
 /// A mocked error type for Reqwest.
@@ -644,7 +644,7 @@ impl MockResponse {
 
 
 
-//		Functions
+//		Functions																										
 
 //		create_mock_client														
 /// Creates a mock Reqwest client.
