@@ -189,8 +189,7 @@ impl MockRequestBuilder {
 	/// 
 	/// * [`reqwest::RequestBuilder::body()`]
 	/// 
-	#[expect(unused_mut,                     reason = "Needed for compatibility with the real Reqwest")]
-	#[expect(clippy::needless_pass_by_value, reason = "Needed for compatibility with the real Reqwest")]
+	#[expect(unused_mut, reason = "Needed for compatibility with the real Reqwest")]
 	#[must_use]
 	pub fn body<T: Into<Body>>(mut self, _body: T) -> Self {
 		self
@@ -222,8 +221,7 @@ impl MockRequestBuilder {
 	/// 
 	/// * [`reqwest::RequestBuilder::headers()`]
 	/// 
-	#[expect(unused_mut,                     reason = "Needed for compatibility with the real Reqwest")]
-	#[expect(clippy::needless_pass_by_value, reason = "Needed for compatibility with the real Reqwest")]
+	#[expect(unused_mut, reason = "Needed for compatibility with the real Reqwest")]
 	#[must_use]
 	pub fn headers(mut self, _headers: HeaderMap) -> Self {
 		self
@@ -425,7 +423,7 @@ impl MockError {
 	/// 
 	/// * [`reqwest::Error::url_mut()`]
 	/// 
-	pub fn url_mut(&mut self) -> Option<&mut Url> {
+	pub const fn url_mut(&mut self) -> Option<&mut Url> {
 		self.url.as_mut()
 	}
 	
