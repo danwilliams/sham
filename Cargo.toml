@@ -3,7 +3,7 @@ resolver = "2"
 members  = ["crates/*"]
 
 [workspace.package]
-version       = "0.2.0"
+version       = "0.2.1"
 edition       = "2024"
 rust-version  = "1.86.0"
 license       = "MIT"
@@ -22,7 +22,7 @@ lto       = "thin" # Enable link-time optimisation (fast)
 #==============================[  DEPENDENCIES  ]===============================
 
 [workspace.dependencies]
-sham               = { version = "0.1.0", path = "crates/sham" }
+sham               = { version = "0.2.1", path = "crates/sham" }
 
 #=================================[  LINTS  ]===================================
 
